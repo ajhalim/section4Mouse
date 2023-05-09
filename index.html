@@ -9,20 +9,20 @@
     <script>
         class Demo extends Phaser.Scene {
             create() {
-                this.meep = this.add.text(15,15,'🐁').setOrigin(0.5,0.5);
+                this.meep = this.add.text(10,10,'🐁').setOrigin(0.5,0.5);
                 this.input.setDefaultCursor('none');
                 this.input.on('pointerdown', (event) => {
                     this.tweens.add({
                         targets: this.meep,
-                        scale: 3,
-                        duration: 50
+                        scale: 2,
+                        duration: 300 // changed from 100 to 300
                     });
                 });
                 this.input.on('pointerup', (event) => {
                     this.tweens.add({
                         targets: this.meep,
-                        scale: 2,
-                        duration: 50
+                        scale: 1,
+                        duration: 300 // changed from 100 to 300
                     });
                 });
 
@@ -36,7 +36,7 @@
                     this.tweens.add({
                         targets: this.meep,
                         angle: {from: -5, to: 0},
-                        duration: 500
+                        duration: 250
                     });
 
                     // spawn a dropping
@@ -46,9 +46,9 @@
                     // shoot away quickly
                     this.tweens.add({
                         targets: dropping,
-                        x: '+=' + (20*Math.random()),
-                        y: '+=' + (5*Math.random()),
-                        duration: 600,
+                        x: '+=' + (10*Math.random()),
+                        y: '+=' + (10*Math.random()),
+                        duration: 250,
                         ease: 'Cubic.out'
                     });
 
@@ -56,7 +56,7 @@
                     this.tweens.add({
                         targets: dropping,
                         alpha: {from: 0.5, to: 0},
-                        duration: 5000,
+                        duration: 7000, // changed from 5000 to 7000
                         ease: 'Cubic.in',
                         onComplete: () => dropping.destroy()
                     });
@@ -65,10 +65,10 @@
             }
         }
         let game = new Phaser.Game({
-            width: 1280,
-            height: 1040,
+            width: 640,
+            height: 520,
             scene: Demo,
-            backgroundColor: red,
+            backgroundColor: 0xadd8e6,
             parent: 'here'
         });
     </script>
